@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<p:panel header="JSF com Hibernate">
+		<h:form id="form1">
+			<p:panelGrid columns="2">
+
+				<h:outputText value="Nome" />
+				<p:inputText value="#{mb.cliente.nome}" required="true"></p:inputText>
+				<h:outputText value="Sexo" />
+				<p:selectOneMenu value="#{mb.cliente.sexo}" required="true">
+					<f:selectItem itemLabel="Masculino" itemValue="m"></f:selectItem>
+					<f:selectItem itemLabel="Feminino" itemValue="f"></f:selectItem>
+				</p:selectOneMenu>
+				<h:outputText value="Logradouro" />
+				<p:inputText value="#{mb.endereco.logradouro}" required="true"></p:inputText>
+				<h:outputText value="Bairro" />
+				<p:inputText value="#{mb.endereco.bairro}" required="true"></p:inputText>
+				<h:outputText value="Cidade" />
+				<p:inputText value="#{mb.endereco.cidade}" required="true"></p:inputText>
+				<h:outputText value="Estado" />
+				<p:inputText value="#{mb.endereco.estado}" required="true"></p:inputText>
+				<h:outputText value="Cep" />
+				<p:inputText value="#{mb.endereco.cep}" required="true"></p:inputText>
+
+				<p:commandButton value="Gravar" action="#{mb.gravar}" ajax="true"
+					update=":form1, :form2"></p:commandButton>
+				<p:growl></p:growl>
+
+			</p:panelGrid>
+		</h:form>
+	</p:panel>
+
+	<p:panel header="Consultar Dados">
+		<h:form id="form2">
+			<p:dataList var="linha" value="#{mb.clientes}">#{linha.nome},#{linha.endereco.bairro}</p:dataList>
+		</h:form>
+	</p:panel>
+
+	<p:panel header="Buscar Codigo">
+		<h:form id="form3">
+			<p:panelGrid columns="2">
+				<h:outputText value="Codigo" />
+				<p:inputText value="#{mb.MBCodigo}"></p:inputText>
+				<p:commandButton value="Buscar Codigo" action="#{mb.buscarCodigo}"
+					ajax="true" update=":form3"></p:commandButton>
+				<p:growl></p:growl>
+			</p:panelGrid>
+		</h:form>
+	</p:panel>
+</h:body>
+
+</html>

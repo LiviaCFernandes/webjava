@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<p:panel header="Cadastrar Produto">
+		<h:form id="form1">
+			<p:panelGrid columns="2">
+				<h:outputText value="Nome"></h:outputText>
+				<p:inputText value="#{mb.produto.nome}"></p:inputText> 
+				
+	 
+				
+				<h:outputText value="Preco"></h:outputText>
+				<p:inputText value="#{mb.produto.preco}"></p:inputText>
+				<p:commandButton value="Gravar" action="#{mb.gravar}" 
+				ajax="true" update=":form1, :form2, :form3, :form4"></p:commandButton>
+			</p:panelGrid>
+			<p:growl></p:growl>
+		</h:form>
+	</p:panel>
+	
+	<p:panel header="Relatorio Produto">
+		<h:form id="form2" target="_blank">
+			<p:commandButton value="Relatorio" action="#{mb.relatorio}" ajax="false"></p:commandButton>
+			<p:growl></p:growl>
+		</h:form>
+	</p:panel>
+
+	<p:panel header="Listar Produto">
+		<h:form id="form3">
+			<p:dataList value="#{mb.produtos}" var="linha" >
+			#{linha}
+			</p:dataList>
+			<p:growl></p:growl>
+		</h:form>
+	</p:panel>
+	
+	<p:panel header="Listar Produto">
+		<h:form id="form4">
+			<p:dataList value="#{mb.produtos}" var="linha" rows="2" paginator="true">
+			<p:column headerText="Nome">
+				<h:outputText value="#{linha.nome}"></h:outputText>
+			</p:column>
+			<p:column headerText="Preco">
+				<h:outputText value="#{linha.preco}"></h:outputText>
+			</p:column>
+			<p:column headerText="Excluir">
+				<p:commandButton value="Excluir"></p:commandButton>
+			</p:column>
+			</p:dataList>
+			<p:growl></p:growl>
+		</h:form>
+	</p:panel>
+	
+	
+</h:body>
+</html>
