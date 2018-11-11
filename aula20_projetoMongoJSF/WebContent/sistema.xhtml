@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head></h:head>
+
+<h:body>
+	<p:panel header="Cadastrar Cliente">
+		<h:form id="form1">
+			<p:panelGrid columns='2'>
+				<h:outputText value="Id"></h:outputText>
+				<p:inputText value="#{mb.cliente.id}"></p:inputText>
+				<h:outputText value="Nome"></h:outputText>
+				<p:inputText value="#{mb.cliente.nome}"></p:inputText>
+				<h:outputText value="Email"></h:outputText>
+				<p:inputText value="#{mb.cliente.email}"></p:inputText>
+				<h:outputText value="Idade"></h:outputText>
+				<p:inputText value="#{mb.cliente.idade}"></p:inputText>
+				<p:commandButton value="Gravar" action="#{mb.gravar}" ajax="true"
+					update=":form1, :form2"></p:commandButton>
+			</p:panelGrid>
+		</h:form>
+	</p:panel>
+	
+	<p:panel header="Consultar Clientes">
+		<h:form id="form2">
+			<p:dataTable var="linha" value="#{mb.lista}" rows="3" paginator="true">
+				<p:column headerText="Id">
+					<h:outputText value="#{linha.id}"></h:outputText>
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{linha.nome}"></h:outputText>
+				</p:column>
+				<p:column headerText="Email">
+					<h:outputText value="#{linha.email}"></h:outputText>
+				</p:column>
+				<p:column headerText="Idade">
+					<h:outputText value="#{linha.idade}"></h:outputText>
+				</p:column>
+				<p:column headerText="Excluir">
+					<p:commandButton value="Excluir" action="#{mb.excluir}" ajax="true" update=":form2">
+						<f:setPropertyActionListener value="#{linha}" target="#{mb.cliente}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:panel>
+	
+</h:body>
+
+
+</html>
